@@ -1,0 +1,31 @@
+cd /Users/mkarroqe/Documents/GitHub/Java/HW1_Recipe; JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_241.jdk/Contents/Home "/Applications/NetBeans/Apache NetBeans 11.2.app/Contents/Resources/NetBeans/netbeans/java/maven/bin/mvn" "-Dexec.args=-classpath %classpath HW1_Recipe" -Dexec.executable=/Library/Java/JavaVirtualMachines/jdk1.8.0_241.jdk/Contents/Home/bin/java org.codehaus.mojo:exec-maven-plugin:1.5.0:exec
+Running NetBeans Compile On Save execution. Phase execution is skipped and output directories of dependency projects (with Compile on Save turned on) will be used instead of their jar artifacts.
+Scanning for projects...
+                                                                        
+------------------------------------------------------------------------
+Building HW1_Recipe 1.0-SNAPSHOT
+------------------------------------------------------------------------
+
+--- exec-maven-plugin:1.5.0:exec (default-cli) @ HW1_Recipe ---
+Ingredients: 
+	 - 0.5 units of flour
+ 	 - 0.5 units of sugar
+ 	 - 2.0 units of eggs
+ 
+
+Steps: 
+	1: Mix your dry ingredients in a bowl.
+ 	2: Put a saucepan on medium heat.
+ 	3: Put your dry ingredients in the hot pan. Allow the sugar to caramalize.
+ 	4: Stir in the eggs, making sure not to scramble them.
+ 	5: Realize the flour was a mistake as everything starts to burn.
+ 	6: Chuck it in the bin and turn on Great British Bake Off.
+ 	7: Pretend you know things by predicting contenstant failures.
+ 
+------------------------------------------------------------------------
+BUILD SUCCESS
+------------------------------------------------------------------------
+Total time: 2.203 s
+Finished at: 2020-02-13T19:54:09-05:00
+Final Memory: 7M/113M
+------------------------------------------------------------------------
