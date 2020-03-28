@@ -1,5 +1,6 @@
 # Assignment
-- Modify your button GUI program so that the buttons change color, automatically, about every second unless they've been pressed.
+- Modify your button GUI program from HW 2
+- Buttons change color, automatically, about every second unless they've been pressed
 
 # Demo
 *ft. comparision to previous assignment*
