@@ -44,9 +44,8 @@ class buttonThread extends Thread {
                     Color new_color = new Color(r, g, b);
                     button.setBackground(new_color);
                 }
-                else {
-                    // keep sleeping a lil longer
-                    sleep(1000); // check
+                else {                                // button is pressed
+                    sleep(1000);                // so keep sleeping a lil longer
                 }
             }
             catch(Exception e) {}
@@ -54,6 +53,7 @@ class buttonThread extends Thread {
     }
 }
 
+// From HW 2:
 public class HW3_Auto_Buttons {
     static JButton button;
     static final int GRID_ROWS = 4;
@@ -100,7 +100,7 @@ public class HW3_Auto_Buttons {
             curr_button.setBorderPainted(false);
 
             curr_button.addActionListener(new ButtonListener(buttons, curr_button));
-            curr_button.bThread.start();
+            curr_button.bThread.start();                // Added this to start button thread
 
             buttons[i] = curr_button;
             jp.add(buttons[i]);
