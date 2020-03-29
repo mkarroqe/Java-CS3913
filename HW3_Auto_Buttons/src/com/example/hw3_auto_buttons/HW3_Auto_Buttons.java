@@ -32,20 +32,14 @@ class buttonThread extends Thread {
     public void run() {
         while(true) {
             try {
-                sleep(1000); // 1 second
-
+                sleep(1000);
                 if(!button.pressed) {
                     // change color
-                    int[] randRGB = HW3_Auto_Buttons.getRandRGB();
-                    int r = randRGB[0];
-                    int g = randRGB[1];
-                    int b = randRGB[2];
-
-                    Color new_color = new Color(r, g, b);
+                    Color new_color = HW3_Auto_Buttons.getRandColor();
                     button.setBackground(new_color);
                 }
-                else {                                // button is pressed
-                    sleep(1000);                // so keep sleeping a lil longer
+                else { // button is pressed
+                    sleep(1000); // we sleep and don't change color
                 }
             }
             catch(Exception e) {}
@@ -53,14 +47,15 @@ class buttonThread extends Thread {
     }
 }
 
-// From HW 2:
+// Modified from HW 2:
 public class HW3_Auto_Buttons {
     static JButton button;
     static final int GRID_ROWS = 4;
     static final int GRID_COLS = 2;
     static final int num_buttons = GRID_ROWS * GRID_COLS;
 
-    static int[] getRandRGB() {
+    // Edited to return Color instead of int[]
+    static Color getRandColor() {
         Random rand = new Random();
         int[] rands = new int[3];
 
@@ -72,7 +67,8 @@ public class HW3_Auto_Buttons {
         rands[1] = g;
         rands[2] = b;
 
-        return rands;
+        Color new_color = new Color(r, g, b);
+        return new_color;
     }
 
     public static void main(String[] args) {
@@ -87,11 +83,7 @@ public class HW3_Auto_Buttons {
 
         for (int i = 0; i < num_buttons; i++) {
             // Get Random Color
-            int[] randRGB = getRandRGB();
-            int r = randRGB[0];
-            int g = randRGB[1];
-            int b = randRGB[2];
-            Color curr_color = new Color(r, g, b);
+            Color curr_color = getRandColor();
 
             // Create button
             betterButton curr_button = new betterButton();
@@ -122,14 +114,11 @@ class ButtonListener implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent arg0) {
+        curr_button.pressed = true;
+
         for(int i=0; i < buttons.length; i++) {
             if(buttons[i] != curr_button){
-                Random rand = new Random();
-                int r = rand.nextInt(255);
-                int g = rand.nextInt(255);
-                int b = rand.nextInt(255);
-                Color new_color = new Color(r, g, b);
-
+                Color new_color = HW3_Auto_Buttons.getRandColor();
                 buttons[i].setBackground(new_color);
             }
         }
