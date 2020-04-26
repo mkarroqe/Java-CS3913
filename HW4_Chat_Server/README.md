@@ -20,5 +20,6 @@ For this assignment, you will design a chat server and client!  Pay careful atte
   - After the first message is sent, anything received from the server is displayed in the top box and anything written in the bottom box (after the send button is pushed) is sent to the server.
   
 # Demo
-*more coming soon*
+Main code files are located at [/src/com/example/hw4_chat_server](https://github.com/mkarroqe/Java-CS3913/tree/master/HW4_Chat_Server/src/com/example/hw4_chat_server)
+> *more coming soon*
 ![](demo/main.png)
