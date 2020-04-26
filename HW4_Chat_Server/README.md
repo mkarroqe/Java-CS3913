@@ -20,4 +20,5 @@ For this assignment, you will design a chat server and client!  Pay careful atte
   - After the first message is sent, anything received from the server is displayed in the top box and anything written in the bottom box (after the send button is pushed) is sent to the server.
   
 # Demo
-*coming soon*
+*more coming soon*
+![](demo/main.png)
