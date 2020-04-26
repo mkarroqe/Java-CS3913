@@ -4,12 +4,9 @@ For this assignment, you will design a chat server and client!  Pay careful atte
 - Chat Server
   - Will accept connections from clients on port 5190
   - Will relay anything sent to the server to all clients (including the one who originally sent the message), with the sender's name prepended to the message. 
-  
-    > For example if "DKatz" sends "Hello world" the server will relay that message to all connected clients as "DKatz: Hello world" The server should not produce any output on the screen. 
-    
   - Clients, upon connecting, have to announce their username
   - Client username should NOT be forwarded to the other clients
-  - The server should not introduce itself to the client!
+  - The server should not introduce itself to the client
 
 - Chat Client
   - Will have a top box which is displays all the messages from the clients
@@ -21,5 +18,7 @@ For this assignment, you will design a chat server and client!  Pay careful atte
   
 # Demo
 Main code files are located at [/src/com/example/hw4_chat_server](https://github.com/mkarroqe/Java-CS3913/tree/master/HW4_Chat_Server/src/com/example/hw4_chat_server)
-> *more coming soon*
+
 ![](demo/main.png)
+
+> *more coming soon*
