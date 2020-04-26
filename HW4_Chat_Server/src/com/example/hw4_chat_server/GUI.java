@@ -54,5 +54,34 @@ public class GUI {
         chat_box.setLayout(new BorderLayout());
         chat_box.setBackground(minty_white);
         chat_box.add(input_field, BorderLayout.SOUTH);
+
+        // TODO: text from input will be formatted here
+        text_msg.setText("  mkbot: test msg");
+        chat_box.add(text_msg, BorderLayout.NORTH);
+
+//        try {
+//            Socket s = new Socket("localhost", 5190);
+//            Scanner input = new Scanner(s.getInputStream());
+//            PrintStream output = new PrintStream(s.getOutputStream());
+//            String msg = "";
+//
+//            while (!msg.equalsIgnoreCase("exit")){
+//                msg = input.nextLine();
+//                text_box.setText(text_msg.getText() + msg + "\n");
+//            }
+//        }
+//        catch (IOException ex) {}
+//
+        jf.add(chat_box);
+        jf.setVisible(true);
+//
+//        class ButtonListener implements ActionListener {
+//            @Override
+//            public void actionPerformed(ActionEvent arg0) {
+//                String message = text_box.getText();
+//                output.print(message + "\r\n");
+//                text_msg.setText("");
+//            }
+//        }
     }
 }
