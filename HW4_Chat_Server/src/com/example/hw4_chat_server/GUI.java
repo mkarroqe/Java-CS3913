@@ -29,7 +29,7 @@ public class GUI extends JPanel implements ActionListener {
     protected JTextField text_box3;
     protected JButton connect_button;
 
-    static String username;
+    static String user_name;
     static int port;
     static PrintStream output;
 
@@ -72,38 +72,38 @@ public class GUI extends JPanel implements ActionListener {
         input_field.add(send_button, BorderLayout.EAST);
         input_field.add(instructions, BorderLayout.NORTH);
 
-//        // User Info: -----------------------------
-//        user_info = new JPanel();
-//        user_info.setLayout(new BorderLayout());
-//        user_info.setBackground(minty);
-//
-//        text_box2 = new JTextField(11);
-//        text_box2.setText("Username: ");
-//        text_box2.setForeground(med_grey);
+        // User Info: -----------------------------
+        user_info = new JPanel();
+        user_info.setLayout(new BorderLayout());
+        user_info.setBackground(minty);
+
+        text_box2 = new JTextField(11);
+        text_box2.setText("Username: ");
+        text_box2.setForeground(med_grey);
 //        text_box2.addActionListener(this);
 //
-//        text_box3 = new JTextField(11);
-//        text_box3.setText("Port Num: ");
-//        text_box3.setForeground(med_grey);
+        text_box3 = new JTextField(11);
+        text_box3.setText("Port Num: ");
+        text_box3.setForeground(med_grey);
 //        text_box3.addActionListener(this);
 //
-//        connect_button = new JButton("Connect");
-//        connect_button.setBackground(med_grey);
-//        connect_button.setForeground(Color.white);
-//        connect_button.setOpaque(true);
-//        connect_button.setBorderPainted(false);
-//        connect_button.addActionListener(evt -> actionConnect(evt));
+        connect_button = new JButton("Connect");
+        connect_button.setBackground(med_grey);
+        connect_button.setForeground(Color.white);
+        connect_button.setOpaque(true);
+        connect_button.setBorderPainted(false);
+        connect_button.addActionListener(evt -> actionConnect(evt));
 //
-//        user_info.add(text_box2, BorderLayout.WEST);
-//        user_info.add(text_box3, BorderLayout.CENTER);
-//        user_info.add(connect_button, BorderLayout.EAST);
+        user_info.add(text_box2, BorderLayout.WEST);
+        user_info.add(text_box3, BorderLayout.CENTER);
+        user_info.add(connect_button, BorderLayout.EAST);
 //
-//        input_field.add(user_info, BorderLayout.SOUTH);
+        input_field.add(user_info, BorderLayout.SOUTH);
 
         // -----------------------------------------
 
         // --------------------- Output Section: -----------------------
-        message_area = new JTextArea(18, 22);
+        message_area = new JTextArea(16, 22);
         message_area.setEditable(false);
         message_area.setForeground(med_grey);
 
@@ -118,7 +118,7 @@ public class GUI extends JPanel implements ActionListener {
 
     public void actionPerformed(ActionEvent evt) {
         String message = text_box.getText();
-        output.print(message + "\r\n");
+        output.print("  " + message + "\r\n");
         text_box.setText("");
 //        message_area.append(message + "\n");
 //        text_box.selectAll();
@@ -126,16 +126,20 @@ public class GUI extends JPanel implements ActionListener {
 
     public void actionSend(ActionEvent evt) {
         String message = text_box.getText();
-        output.print(message + "\r\n");
+        output.print("  " + message + "\r\n");
         text_box.setText("");
 //        message_area.append(message + "\n");
 //        text_box.selectAll();
     }
 
     public void actionConnect(ActionEvent evt) {
-        username = text_box2.getText();
+        user_name = text_box2.getText();
+        String port_text = text_box3.getText();
         port = Integer.parseInt(text_box3.getText());
-        output.print(username + "\r\n");
+
+        String message = text_box.getText();
+        output.print(message + "\r\n");
+        output.print("  >" + user_name +  " successfully connected to port " + port_text + "\r\n");
 
         text_box2.setText("");
         text_box3.setText("");
@@ -155,7 +159,7 @@ public class GUI extends JPanel implements ActionListener {
         GUI_setup();
 
         try {
-            Socket s = new Socket("localhost", 5190);
+            Socket s = new Socket("localhost", 3000);
             Scanner input = new Scanner(s.getInputStream());
             output = new PrintStream(s.getOutputStream());
             String message = "";

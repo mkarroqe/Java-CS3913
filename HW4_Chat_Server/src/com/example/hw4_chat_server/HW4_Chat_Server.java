@@ -5,7 +5,7 @@ import java.net.*;
 import java.util.*;
 
 public class HW4_Chat_Server {
-    static int port = 5190;
+    static int port = 3000;
 
     public static void main(String[] args) {
         ServerSocket socket = null;
@@ -19,7 +19,7 @@ public class HW4_Chat_Server {
             }
         }
         catch(IOException ex) {
-            System.out.println("Socket unreachable.");
+            System.out.println("Socket unreachable..");
         }
     }
 }
@@ -35,15 +35,15 @@ class Connection extends Thread{
     public void run() {
         try {
             Scanner user_input = new Scanner(client.getInputStream());
-            String msg = "";
+            String message = "";
 //            port = Integer.parseInt(user_input.nextLine());
             username = user_input.nextLine();
             users.add(this);
 
-            while (!msg.equals("STOP")) {
-                msg = user_input.nextLine();
-                for (Connection p : users) {
-                    p.send(msg, username);
+            while (!message.equals("STOP")) {
+                message = user_input.nextLine();
+                for (Connection conn : users) {
+                    conn.send(message, username);
                 }
             }
             client.close();
@@ -51,11 +51,11 @@ class Connection extends Thread{
         catch(IOException ex) {}
     }
 
-    public void send(String msg, String username){
+    public void send(String message, String username){
         try {
             PrintStream output = new PrintStream(client.getOutputStream());
-            String output_text = "  " + username + ": " + msg;
-            output.println(output_text);
+//            String output_text = "  " + username + ": " + msg;
+            output.println("  " + username + ": " + message);
         }
         catch(IOException ex) {}
     }
