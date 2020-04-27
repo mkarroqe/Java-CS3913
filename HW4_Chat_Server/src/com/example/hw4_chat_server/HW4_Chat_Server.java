@@ -5,7 +5,7 @@ import java.net.*;
 import java.util.*;
 
 public class HW4_Chat_Server {
-    static int port = 3000;
+    static int port = 5190;
 
     public static void main(String[] args) {
         ServerSocket socket = null;

@@ -159,7 +159,7 @@ public class GUI extends JPanel implements ActionListener {
         GUI_setup();
 
         try {
-            Socket s = new Socket("localhost", 3000);
+            Socket s = new Socket("localhost", 5190);
             Scanner input = new Scanner(s.getInputStream());
             output = new PrintStream(s.getOutputStream());
             String message = "";
