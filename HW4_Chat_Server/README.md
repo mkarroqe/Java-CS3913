@@ -19,6 +19,4 @@ For this assignment, you will design a chat server and client!  Pay careful atte
 # Demo
 Main code files are located at [/src/com/example/hw4_chat_server](https://github.com/mkarroqe/Java-CS3913/tree/master/HW4_Chat_Server/src/com/example/hw4_chat_server)
 
-![](demo/main.png)
-
-> *more coming soon*
+![](demo/final-demo.gif)
