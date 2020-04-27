@@ -63,6 +63,7 @@ public class GUI extends JPanel implements ActionListener {
 
         instructions = new JLabel();
         instructions.setText("<html><p><i>" +
+                "> First Enter Username and Send <br />" +
                 "> Type \"STOP\" to exit." +
                 "</i></p></html>");
         instructions.setForeground(Color.gray);
@@ -71,33 +72,33 @@ public class GUI extends JPanel implements ActionListener {
         input_field.add(send_button, BorderLayout.EAST);
         input_field.add(instructions, BorderLayout.NORTH);
 
-        // User Info: -----------------------------
-        user_info = new JPanel();
-        user_info.setLayout(new BorderLayout());
-        user_info.setBackground(minty);
-
-        text_box2 = new JTextField(11);
-        text_box2.setText("Username: ");
-        text_box2.setForeground(med_grey);
-        text_box2.addActionListener(this);
-
-        text_box3 = new JTextField(11);
-        text_box3.setText("Port Num: ");
-        text_box3.setForeground(med_grey);
-        text_box3.addActionListener(this);
-
-        connect_button = new JButton("Connect");
-        connect_button.setBackground(med_grey);
-        connect_button.setForeground(Color.white);
-        connect_button.setOpaque(true);
-        connect_button.setBorderPainted(false);
-        connect_button.addActionListener(evt -> actionConnect(evt));
-
-        user_info.add(text_box2, BorderLayout.WEST);
-        user_info.add(text_box3, BorderLayout.CENTER);
-        user_info.add(connect_button, BorderLayout.EAST);
-
-        input_field.add(user_info, BorderLayout.SOUTH);
+//        // User Info: -----------------------------
+//        user_info = new JPanel();
+//        user_info.setLayout(new BorderLayout());
+//        user_info.setBackground(minty);
+//
+//        text_box2 = new JTextField(11);
+//        text_box2.setText("Username: ");
+//        text_box2.setForeground(med_grey);
+//        text_box2.addActionListener(this);
+//
+//        text_box3 = new JTextField(11);
+//        text_box3.setText("Port Num: ");
+//        text_box3.setForeground(med_grey);
+//        text_box3.addActionListener(this);
+//
+//        connect_button = new JButton("Connect");
+//        connect_button.setBackground(med_grey);
+//        connect_button.setForeground(Color.white);
+//        connect_button.setOpaque(true);
+//        connect_button.setBorderPainted(false);
+//        connect_button.addActionListener(evt -> actionConnect(evt));
+//
+//        user_info.add(text_box2, BorderLayout.WEST);
+//        user_info.add(text_box3, BorderLayout.CENTER);
+//        user_info.add(connect_button, BorderLayout.EAST);
+//
+//        input_field.add(user_info, BorderLayout.SOUTH);
 
         // -----------------------------------------
 
@@ -135,6 +136,9 @@ public class GUI extends JPanel implements ActionListener {
         username = text_box2.getText();
         port = Integer.parseInt(text_box3.getText());
         output.print(username + "\r\n");
+
+        text_box2.setText("");
+        text_box3.setText("");
     }
 
     public static void GUI_setup() {
@@ -151,13 +155,13 @@ public class GUI extends JPanel implements ActionListener {
         GUI_setup();
 
         try {
-            Socket s = new Socket("localhost", 3000);
+            Socket s = new Socket("localhost", 5190);
             Scanner input = new Scanner(s.getInputStream());
             output = new PrintStream(s.getOutputStream());
-            String msg = "";
-            while (!msg.equalsIgnoreCase("STOP")){
-                msg = input.nextLine();
-                message_area.setText(message_area.getText() + msg + "\n");
+            String message = "";
+            while (!message.equals("STOP")){
+                message = input.nextLine();
+                message_area.setText(message_area.getText() + message + "\n");
             }
         }
         catch (IOException ex) {}

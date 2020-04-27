@@ -28,6 +28,7 @@ class Connection extends Thread{
     static ArrayList<Connection> users = new ArrayList<Connection>();
     Socket client;
     String username;
+//    int port;
 
     Connection(Socket data) { client = data; }
 
@@ -35,6 +36,7 @@ class Connection extends Thread{
         try {
             Scanner user_input = new Scanner(client.getInputStream());
             String msg = "";
+//            port = Integer.parseInt(user_input.nextLine());
             username = user_input.nextLine();
             users.add(this);
 
