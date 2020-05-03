@@ -61,7 +61,7 @@ public class HW5_Analog_Clock {
 
         try {
             SSLSocketFactory factory = (SSLSocketFactory)SSLSocketFactory.getDefault();
-            SSLSocket socket = (SSLSocket)factory.createSocket("nist.time.gov", 443);
+            SSLSocket socket = (SSLSocket)factory.createSocket("nist.time.gov", 13);
             socket.startHandshake();
 
             PrintStream output = new PrintStream(socket.getOutputStream());
