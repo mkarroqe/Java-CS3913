@@ -1,10 +1,8 @@
 package com.example.hw5_analog_clock;
 
 import java.awt.*;
-import java.io.*;
-import java.text.*;
+import java.net.Socket;
 import java.util.*;
-import javax.net.ssl.*;
 import javax.swing.*;
 
 public class HW5_Analog_Clock {
@@ -26,15 +24,6 @@ public class HW5_Analog_Clock {
         analog_panel.setLayout(new BorderLayout());
         jf.add(analog_panel, BorderLayout.CENTER);
 
-//        // digital clock for fun + debugging
-//        JPanel digital_panel = new JPanel();
-//        digital_panel.setLayout(new BorderLayout());
-//        getUTC();
-//        JLabel digital = new JLabel("<html><br/>" + hr + ":" + min + ":" + sec + "<br/><br/></html>",
-//                                    SwingConstants.CENTER);
-//        digital_panel.add(digital);
-//        jf.add(digital_panel, BorderLayout.SOUTH);
-
         getUTC();
 
         new Thread() {
@@ -53,51 +42,34 @@ public class HW5_Analog_Clock {
             }
         }.start();
 
+        // "digital" clock for fun/debugging
+        JPanel digital_panel = new JPanel();
+        digital_panel.setLayout(new BorderLayout());
+        JLabel digital = new JLabel("<html><br/> You first checked the time at: " + hr + ":" + min + ":" + sec + "<br/><br/></html>",
+                SwingConstants.CENTER);
+        digital_panel.add(digital);
+
+        jf.add(digital_panel, BorderLayout.SOUTH);
         jf.setVisible(true);
     }
 
     private static void getUTC() {
-        long time = 0;
-
         try {
-            SSLSocketFactory factory = (SSLSocketFactory)SSLSocketFactory.getDefault();
-            SSLSocket socket = (SSLSocket)factory.createSocket("nist.time.gov", 13);
-            socket.startHandshake();
+            Socket socket = new Socket("time-a-g.nist.gov", 13);
 
-            PrintStream output = new PrintStream(socket.getOutputStream());
-            Scanner input = new Scanner(socket.getInputStream());
-            output.print("GET /actualtime.cgi HTTP/1.0\r\nHOST: nist.time.gov\r\n\r\n");
+            if (socket.isConnected()) {
+                Scanner input = new Scanner(socket.getInputStream());
+                input.nextLine();
+                String[] data = input.nextLine().substring(15, 23).split(":");
 
-            String time_String = "";
-            while (input.hasNext()) {
-                time_String = input.nextLine();
-                if (time_String.equalsIgnoreCase("stop")) {
-                    continue;
-                }
+                HW5_Analog_Clock.hr = Integer.parseInt(data[0]);
+                HW5_Analog_Clock.min = Integer.parseInt(data[1]);
+                HW5_Analog_Clock.sec = Integer.parseInt(data[2]);
             }
-
-            int start = time_String.indexOf("\"");
-            int end = time_String.indexOf("\"", start + 1);
-            time_String = time_String.substring(start + 1,end);
-            time = Long.parseLong(time_String);
-        }
-
-        catch (Exception ex) {}
-
-        finally {
-            time /= 1000;
-
-            Date date = new Date(time);
-            SimpleDateFormat _hr = new SimpleDateFormat("HH");
-            SimpleDateFormat _min = new SimpleDateFormat("mm");
-            SimpleDateFormat _sec = new SimpleDateFormat("ss");
-
-            hr = Integer.parseInt(_hr.format(date));
-            min = Integer.parseInt(_min.format(date));
-            sec = Integer.parseInt(_sec.format(date));
 
             System.out.println(hr + ":" + min + ":" + sec);
         }
+        catch (Exception ex) { }
     }
 
 }
@@ -176,9 +148,9 @@ class Analog_Panel extends JPanel{
 class Point {
     int x, y;
 
-    Point(int _x, int _y) {
-        x = _x;
-        y = _y;
+    Point(int x, int y) {
+        this.x = x;
+        this.y = y;
     }
 
     Point() {
