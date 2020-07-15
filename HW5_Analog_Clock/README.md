@@ -6,5 +6,5 @@ As you know, the sleep function is imprecise, so you should, periodically, updat
 # Demo
 Main `.java` file can be found [here](https://github.com/mkarroqe/Java-CS3913/blob/master/HW5_Analog_Clock/src/com/example/hw5_analog_clock/HW5_Analog_Clock.java).
 
-| ![](demos/wdigital.png) | ![](demos/demo.gif) |
-| - | - |
+| ![](demos/demo.gif) |
+| - |
